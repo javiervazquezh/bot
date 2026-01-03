@@ -1,0 +1,44 @@
+[package]
+name = "binance_bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+thiserror = "1.0"
+
+tokio = { version = "1.37", features = ["full"] }
+futures-util = "0.3"
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+config = "0.14"
+
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+uuid = { version = "1.8", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+secrecy = { version = "0.8", features = ["serde"] }
+
+reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
+tokio-tungstenite = { version = "0.21", features = ["rustls-tls-webpki-roots"] }
+
+hmac = "0.12"
+sha2 = "0.10"
+base64 = "0.22"
+hex = "0.4"
+
+ed25519-dalek = { version = "2.1", features = ["pkcs8"] }
+rust_decimal = { version = "1.36", features = ["serde"] }
+
+tokio-rusqlite = "0.6"
+rusqlite = { version = "0.31", features = ["bundled"] }
+
+async-trait = "0.1"
+lru = "0.12"
+
+axum = "0.6"
+tower = "0.4"
+prometheus = "0.13"

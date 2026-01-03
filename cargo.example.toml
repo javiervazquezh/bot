@@ -1,0 +1,52 @@
+mode = "dry_run" # dry_run | paper | live
+env = "testnet"  # testnet | prod
+
+[binance]
+rest_base_url = "https://testnet.binance.vision/api"
+ws_stream_base_url = "wss://stream.testnet.binance.vision/ws"
+ws_api_base_url = "wss://ws-api.testnet.binance.vision/ws-api/v3"
+recv_window_ms = 5000
+time_sync_interval_sec = 30
+
+# Secrets are NOT stored here:
+#   BINANCE_API_KEY
+#   BINANCE_API_SECRET (HMAC, for REST trading/recon)
+#   BINANCE_ED25519_PRIVATE_KEY_PEM (for WS API session.logon; preferred)
+
+[universe]
+symbols = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT"]
+timeframe = "1m"
+
+[strategy.ma_crossover]
+fast = 10
+slow = 30
+min_warmup_bars = 40
+
+[risk]
+max_position_notional_per_symbol = "2000"
+max_portfolio_exposure = "4000"
+risk_per_trade_pct = 0.005
+max_daily_loss = "200"
+max_drawdown = 0.20
+
+[execution]
+use_limit_orders = true
+max_slippage_bps = 10
+cancel_stale_after_sec = 30
+order_client_id_prefix = "bot"
+
+[persistence]
+sqlite_path = "./bot.sqlite"
+snapshot_every_n_events = 200
+
+[reconciler]
+enabled = true
+interval_sec = 10
+
+[admin]
+bind = "127.0.0.1:8080"
+require_token = true
+# ADMIN_TOKEN must be set
+
+[observability]
+log_json = true
